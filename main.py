@@ -3,9 +3,9 @@ import discord
 import asyncio
 from discord.ext import commands, tasks
 
-
-HYPIXEL = '0919a174-6fba-43ec-a815-8bbb8366cffc'
-DISCORD = 'ODA3NDkxMDMzMDQyMjU1OTMz.G84qZg.wtxW7okpeyyXz2YGXyhe6XHYOes1lGSdlprtCE'
+#api keys blacked for obvious reasons
+HYPIXEL = '###'
+DISCORD = '###'
 
 
 def findUUID(name):
@@ -74,6 +74,9 @@ async def cleanup_messages():
             # Check if the message author's ID is not the one to exclude
             if message.author.id != USER_ID_TO_EXCLUDE:
                 await message.delete()
+
+
+
 @client.event
 async def on_message(message):
     if message.author == client.user:
@@ -82,7 +85,7 @@ async def on_message(message):
     if message.content.startswith('!verify'):
         # Split the message content into arguments
         args = message.content.split()[1:]
-        
+    
         if len(args) != 1:
             await message.channel.send('Invalid usage. Please use the command as follows: `!verify <Minecraft_username>`')
             return
@@ -115,4 +118,7 @@ async def on_message(message):
         await asyncio.sleep(0)  # Adjust the delay time as needed
         await message.delete()
         await response_message.delete()
+
+
+    
 client.run(TOKEN)
